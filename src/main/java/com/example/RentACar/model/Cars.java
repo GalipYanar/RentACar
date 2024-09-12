@@ -15,7 +15,7 @@ public class Cars {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
 
     private String model;
 
@@ -28,4 +28,14 @@ public class Cars {
     private TransmissionType transmissionType;
 
     private FuelType fuelType;
+
+    @Column(name = "units_in_stock")
+    private Long unitInStock;
+
+    @Column(name = "brand_id")
+    private Long brandId;
+
+    private String image;
+
+    private Boolean active;
 }

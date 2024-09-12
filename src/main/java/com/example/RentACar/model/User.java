@@ -19,7 +19,7 @@ public class User {
 
     private String password;
 
-    @Column(name="first_name")
+    @Column(name = "first_name")
     private String firstName;
 
     @Column(name = "last_name")

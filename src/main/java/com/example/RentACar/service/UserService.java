@@ -2,9 +2,11 @@ package com.example.RentACar.service;
 
 import com.example.RentACar.dto.AuthDto;
 import com.example.RentACar.dto.LoginDto;
+import com.example.RentACar.dto.UserDto;
 import com.example.RentACar.enumm.RoleEnum;
 import com.example.RentACar.model.User;
 import com.example.RentACar.repository.UserRepository;
+import com.example.RentACar.utils.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -31,12 +33,14 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User createUser(User user){
+
+    public UserDto createUser(User user){
         if (Objects.isNull(user.getRoles())){
             user.setRoles(RoleEnum.ROLE_USER.toString());
         }
+
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
+        return UserMapper.INSTANCE.userToUserDto(userRepository.save(user));
     }
 
     public LoginDto login(AuthDto authDto){
