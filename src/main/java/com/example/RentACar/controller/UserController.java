@@ -1,5 +1,7 @@
 package com.example.RentACar.controller;
 
+import com.example.RentACar.dto.AuthDto;
+import com.example.RentACar.dto.LoginDto;
 import com.example.RentACar.model.User;
 import com.example.RentACar.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +25,8 @@ public class UserController {
         return  new ResponseEntity<>(userService.createUser(user), HttpStatus.CREATED);
     }
 
-
+    @PostMapping("/login")
+    public ResponseEntity<LoginDto> login(AuthDto authDto){
+        return new ResponseEntity<>(userService.login(authDto), HttpStatus.OK);
+    }
 }
