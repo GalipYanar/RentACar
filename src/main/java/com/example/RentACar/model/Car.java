@@ -1,5 +1,7 @@
 package com.example.RentACar.model;
 
+/*import com.example.RentACar.enumm.FuelType;
+import com.example.RentACar.enumm.TransmissionType;*/
 import com.example.RentACar.enumm.FuelType;
 import com.example.RentACar.enumm.TransmissionType;
 import jakarta.persistence.*;
@@ -11,7 +13,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "cars")
 
-public class Cars {
+public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,18 +21,22 @@ public class Cars {
 
     private String model;
 
+    private int year;
+
     private String colour;
 
     private Double dailyPrice;
 
     private Double km;
 
+    @Enumerated(EnumType.STRING)
     private TransmissionType transmissionType;
 
+    @Enumerated(EnumType.STRING)
     private FuelType fuelType;
 
     @Column(name = "units_in_stock")
-    private Long unitInStock;
+    private int unitInStock;
 
     @Column(name = "brand_id")
     private Long brandId;
