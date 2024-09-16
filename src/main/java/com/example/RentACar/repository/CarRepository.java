@@ -20,4 +20,10 @@ public interface CarRepository extends JpaRepository<Car, Long> {
     @Modifying
     @Query("UPDATE Car c SET c.active = :active WHERE c.id = :id")
     void updateCarActive(@Param("active") Boolean isActive, @Param("id") Long id);
+
+    @Query("SELECT c FROM Car c")
+    List<Car> getAllCarsList();
+
+    @Query("SELECT count(c) FROM Car c WHERE c.brandId = :brandId")
+    Long getCarCountByProductId(@Param("brandId") Long brandId);
 }

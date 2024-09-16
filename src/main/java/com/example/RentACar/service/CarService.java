@@ -55,8 +55,8 @@ public class CarService {
         return carRepository.findCarListByBrandId(brandId);
     }
 
-    public Car getCars(Long id){
-        return carRepository.findById(id).orElseThrow(() -> new CarNotFoundException("Car not found = "+ id));
+    public Car getCar(Long id){
+        return carRepository.findById(id).orElseThrow(() -> new CarNotFoundException("Car not found = " + id));
     }
 
     public void activeOrDeactiveCar(Long id, Boolean isActive){
@@ -71,5 +71,9 @@ public class CarService {
             throw new RuntimeException(e);
         }
         carRepository.deleteById(id);
+    }
+
+    public List<Car> getAllCars(){
+        return carRepository.getAllCarsList();
     }
 }

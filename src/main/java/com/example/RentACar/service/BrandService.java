@@ -1,5 +1,6 @@
 package com.example.RentACar.service;
 
+import com.example.RentACar.exception.BrandDeleteException;
 import com.example.RentACar.exception.BrandDuplicateException;
 import com.example.RentACar.model.Brand;
 import com.example.RentACar.repository.BrandRepository;
@@ -28,5 +29,13 @@ public class BrandService {
             throw new BrandDuplicateException("Brand is already exist." + brand.getName());
         }
         return brandRepository.save(brand);
+    }
+
+    public void deleteBrand(Long id){
+        Long getCarCountByProductId = carRepository.getCarCountByProductId(id);
+        if (getCarCountByProductId > 0){
+            throw new BrandDeleteException("You can not delete this brand, because brand has = " + getCarCountByProductId + " cars.");
+        }
+        brandRepository.deleteById(id);
     }
 }

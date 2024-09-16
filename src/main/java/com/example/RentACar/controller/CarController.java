@@ -36,14 +36,14 @@ public class CarController {
 
     @PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/brand/{brandId}")
-    public ResponseEntity<List<Car>> getCarList(@PathVariable(value = "brandId")Long brandId){
+    public ResponseEntity<List<Car>> getCarsList(@PathVariable(value = "brandId")Long brandId){
         return new ResponseEntity<>(carService.getCarListByBrandId(brandId), HttpStatus.OK);
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("{id}")
-    public ResponseEntity<Car> getCars(@PathVariable(value = "id") Long id){
-        return new ResponseEntity<>(carService.getCars(id), HttpStatus.OK);
+    public ResponseEntity<Car> getCar(@PathVariable(value = "id") Long id){
+        return new ResponseEntity<>(carService.getCar(id), HttpStatus.OK);
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
@@ -67,6 +67,12 @@ public class CarController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-}
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @GetMapping("/all")
+    public ResponseEntity<List<Car>> getAllCarsList(){
+        return new ResponseEntity<>(carService.getAllCars(), HttpStatus.OK);
+    }
+
+ }
 /*@RequestPart("cars") Cars cars) frontend'e geçince model attribute silinip bu kullanılacak*/
 
