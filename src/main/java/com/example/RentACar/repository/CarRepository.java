@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
+
 @Repository
 
 public interface CarRepository extends JpaRepository<Car, Long> {
@@ -23,6 +25,9 @@ public interface CarRepository extends JpaRepository<Car, Long> {
 
     @Query("SELECT c FROM Car c")
     List<Car> getAllCarsList();
+
+    @Query("SELECT c FROM Car c WHERE c.id = :id")
+    Optional<Car> getCarById(@Param("id") Long id);
 
     @Query("SELECT count(c) FROM Car c WHERE c.brandId = :brandId")
     Long getCarCountByProductId(@Param("brandId") Long brandId);

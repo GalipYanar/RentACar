@@ -26,5 +26,7 @@ public class Order {
 
     private LocalDate deliveryDay;
 
+    private Double dailyPrice;
+
     private Double totalPrice;
 }

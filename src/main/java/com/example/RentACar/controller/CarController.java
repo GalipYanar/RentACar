@@ -27,7 +27,7 @@ public class CarController {
         return new ResponseEntity<>(carService.createCar(file, car), HttpStatus.CREATED);
    }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PutMapping(value = "/update", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Car> updateCar(@RequestPart(value = "file", required = false) MultipartFile file,
                                          @ModelAttribute("car") Car car){
@@ -46,28 +46,28 @@ public class CarController {
         return new ResponseEntity<>(carService.getCar(id), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PutMapping("/active/{id}")
     public ResponseEntity<Boolean> activeCarStatus(@PathVariable("id") Long id){
         carService.activeOrDeactiveCar(id, true);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PutMapping("/deActive/{id}")
     public ResponseEntity<Boolean> deActiveCarStatus(@PathVariable("id") Long id){
         carService.activeOrDeactiveCar(id, false);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteCar(@PathVariable("id") Long id){
         carService.deleteCar(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/all")
     public ResponseEntity<List<Car>> getAllCarsList(){
         return new ResponseEntity<>(carService.getAllCars(), HttpStatus.OK);

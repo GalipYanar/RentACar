@@ -56,7 +56,7 @@ public class CarService {
     }
 
     public Car getCar(Long id){
-        return carRepository.findById(id).orElseThrow(() -> new CarNotFoundException("Car not found = " + id));
+        return carRepository.getCarById(id).orElseThrow(() -> new CarNotFoundException("Car not found = " + id));
     }
 
     public void activeOrDeactiveCar(Long id, Boolean isActive){
